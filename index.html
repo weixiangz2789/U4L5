@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    >
+      let map = L.map('iss_loc').setView([0, 0], 1); // 0 lat and long, no zoom zoom =1;
+
+
+        const marker = L.marker([0, 0]).addTo(map); // this makes the marker starting at 0,0
+
+
+         //we need the attribution as stated on the leaflet page
+         const attribution =
+             '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+
+
+         // not a valid URL, more of a format
+         const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+         const tiles = L.tileLayer(tileUrl, { attribution });
+
+         //now we add the tiles to our map
+         tiles.addTo(map);
+         marker.setLatLng([latitude, longitude]);
+        map.setView([latitude, longitude],5)
+    </script>
+    <script src="script.js" async></script>
+    <style>
+      #iss_loc {
+        height: 20em;
+        width: 30em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ISS Location</h1>
+    <p>
+      <span id="lat"></span>
+      <span id="lon"></span>
+      <span id="velocity"></span>
+    </p>
+    <div id="iss_loc"></div>
+  </body>
+</html>
